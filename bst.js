@@ -21,40 +21,38 @@ class BindarySearchTree {
             function rAdd(current){
                 if(node.val < current.val){
                     if(current.left){
-                        rAdd(current.left);
-                    }else{
-                        current.left = node;
+                        return rAdd(current.left);
                     }
+                    current.left = node;
                 }else{
                     if(current.right){
-                        rAdd(current.right)
-                    }else{
-                        current.right = node;
+                        return rAdd(current.right)
                     }
+                    current.right = node;
                 }
             }
             rAdd(this.root);
         }
     }
-
+    // returns the first node matching the given value
+    // params: value of the node to find
     find(val){
         if(this.root){
-            function rFind(val, node){
+            function rFind(node){
                 if(val == node.val){
-                    console.log('return', node);
                     return node;
                 }else if(val < node.val && node.left){
-                    return rFind(val, node.left);
+                    return rFind(node.left);
                 }else if(node.right){
-                    return rFind(val, node.right);
+                    return rFind(node.right);
                 }
-                // return null;
+                return null;
             }
-            return rFind(val, this.root);
+            return rFind(this.root);
         }
         return null;
     }
-
+    // returns height of the BST
     height(node = this.root){
         if(!node){
             return 0;
@@ -64,9 +62,14 @@ class BindarySearchTree {
 }
 
 var myBST = new BindarySearchTree();
-myBST.add(new Node(4))
-myBST.add(new Node(4))
+myBST.add(new Node(4));
+myBST.add(new Node(5));
+myBST.add(new Node(3));
+myBST.add(new Node(2));
+myBST.add(new Node(9));
 console.log(myBST);
+console.log(myBST.find(5));
+console.log(myBST.height());
 
 
 
