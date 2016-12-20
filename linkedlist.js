@@ -1,4 +1,5 @@
 class Node{
+    // constructs a Node. Optional param: value for node
     constructor(v = null){
         this.val = v;
         this.next = null;
@@ -6,6 +7,7 @@ class Node{
 }
 
 class LinkedList{
+    // constructs LinkedList. Optional param: Node 
     constructor(h = null){
         this.head = h;
     }
