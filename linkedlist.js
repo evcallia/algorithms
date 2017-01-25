@@ -7,7 +7,7 @@ class Node{
 }
 
 class LinkedList{
-    // constructs LinkedList. Optional param: Node 
+    // constructs LinkedList. Optional param: Node
     constructor(h = null){
         this.head = h;
     }
@@ -23,6 +23,7 @@ class LinkedList{
         }else{
             this.head = newNode
         }
+        return this;
     }
     // removes and returns the last element of the list or null if no elements
     pop(){
@@ -82,13 +83,15 @@ class LinkedList{
         var node = new Node();
         node.next = this.head;
         this.head = node;
+        return this.head;
     }
+    //prints a formated linked list
     toString(){
         var str = '';
         var current
         if(this.head){
-            current = this.head.next;
             str += this.head.val;
+            current = this.head.next;
         }else{
             current = this.head;
         }
@@ -98,13 +101,27 @@ class LinkedList{
         }
         return str;
     }
+
+    reverse(){
+        if(this.head){
+            var prev = null;
+            var current = this.head;
+            var next = null;
+            while(current){
+                next = current.next;
+                current.next = prev;
+                prev = current;
+                current = next;
+            }
+            this.head = prev;
+            return this.head;
+        }
+    }
 }
 
 //testing
 var myList = new LinkedList();
-myList.push(new Node(5));
-myList.push(new Node(6));
-myList.push(new Node(3));
+myList.push(new Node(5)).push(new Node(6)).push(new Node(3));
 console.log(myList.toString());  // 5 -> 6 -> 3
 
 myList.pop();
@@ -116,10 +133,11 @@ console.log(myList.toString()); // 5 -> 9 -> 6
 myList.unshift();
 console.log(myList.toString()); // null -> 5 -> 9 -> 6
 
-var m = myList.shift();
+myList.shift();
 console.log(myList.toString()); // 5 -> 9 -> 6
 
-
+myList.reverse();
+console.log(myList.toString()); // 6 -> 9 -> 5
 
 
 
