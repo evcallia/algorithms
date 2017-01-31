@@ -48,19 +48,16 @@ class BindarySearchTree {
                          current = current.left;
                      }else{
                          flag = false;
+                         current.left = node;
                      }
                 }else{
                     if(current.right){
                         current = current.right;
                     }else{
                         flag = false;
+                        current.right = node;
                     }
                 }
-            }
-            if(node.val < current.val){
-                current.left = node;
-            }else{
-                current.right = node;
             }
         }
     }
@@ -88,8 +85,7 @@ class BindarySearchTree {
     find(val){
         if(this.root){
             var current = this.root;
-            var flag = true;
-            while(flag && current){
+            while(current){
                 if(current.val == val){
                     return current;
                 }

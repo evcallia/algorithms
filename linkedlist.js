@@ -27,8 +27,8 @@ class LinkedList{
     }
     // removes and returns the last element of the list or null if no elements
     pop(){
+        var temp = null;
         if(this.head){
-            var temp;
             if(this.head.next){
                 var current = this.head;
                 while(current.next.next){
@@ -40,9 +40,8 @@ class LinkedList{
                 temp = this.head;
                 this.head = null;
             }
-            return temp;
         }
-        return null;
+        return temp;
     }
     // inserts node into specified position. Return true if successful
     // params: number value references the position, Node object to be inserted

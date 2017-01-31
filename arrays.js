@@ -85,9 +85,41 @@ function parentChildren(arr){
     return [parent0, parent1];
 }
 
-// var test = [[1, 3], [2, 3], [3, 6], [5, 6], [5, 7],[4, 5], [4, 8], [8, 9]]
-// console.log(parentChildren(test));
 
+var Queue = require('./queue.js');
+function CommonAncestor(arr, v1, v2){
+    var q = new Queue();
+    var dict = {};
+    q.enqueue(v1);
+    while(!q.isEmpty()){
+        var child = q.dequeue();
+        for(var i = 0; i < arr.length; i++) {
+            if(arr[i][1] == child){
+                if(!(arr[i][0] in dict)){
+                    dict[arr[i][0]] = 0;
+                }
+                q.enqueue(arr[i][0]);
+            }
+        }
+    }
+    q.enqueue(v2);
+    while(!q.isEmpty()){
+        var child = q.dequeue();
+        for (var i = 0; i < arr.length; i++) {
+            if(arr[i][1] == child){
+                if(arr[i][0] in dict){
+                    return true;
+                }
+                q.enqueue(arr[i][0]);
+            }
+        }
+    }
+    return false;
+}
+
+// var arr = [[1, 3], [2, 3], [3, 6], [5, 6], [5, 7],[4, 5], [4, 8], [8, 9]]
+// console.log(parentChildren(arr));
+// console.log(CommonAncestor(arr, 5, 7));
 
 
 

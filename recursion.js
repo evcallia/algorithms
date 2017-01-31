@@ -1,13 +1,13 @@
 // returns the fibonacci sequence up to the number passed in
 // 1 1 2 3 5 8 13 21 34 55 89 144...
-function Fibonacci(num, prev = 0, current = 1, count = num){
+function Fibonacci(num, prev = 0, current = 1){
     if(num <= 0){
         return 0;
     }
-    if(count == 1){
+    if(num == 1){
         return current;
     }
-    return Fibonacci(num, current, prev + current, --count);
+    return Fibonacci(--num, current, prev + current);
 }
 // console.log(Fibonacci(11));
 
