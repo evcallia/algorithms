@@ -70,11 +70,7 @@ function parentChildren(arr){
         }else{
             dict[arr[i][0]] = 0;
         }
-        if(arr[i][1] in dict){
-            dict[arr[i][1]] += 1;
-        }else{
-            dict[arr[i][1]] = 1;
-        }
+        arr[i][1] in dict ? dict[arr[i][1]] += 1 : dict[arr[i][1]] = 1;
     }
     var parent0 = [];
     var parent1 = [];
@@ -89,9 +85,8 @@ function parentChildren(arr){
     return [parent0, parent1];
 }
 
-var test = [[1, 3], [2, 3], [3, 6], [5, 6], [5, 7],[4, 5], [4, 8], [8, 9]]
-console.log(parentChildren(test));
-
+// var test = [[1, 3], [2, 3], [3, 6], [5, 6], [5, 7],[4, 5], [4, 8], [8, 9]]
+// console.log(parentChildren(test));
 
 
 
