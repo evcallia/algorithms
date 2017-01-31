@@ -184,9 +184,9 @@ function CommonAncestor(arr, v1, v2){
     return false;
 }
 
-// var arr = [[1, 3], [2, 3], [3, 6], [5, 6], [5, 7],[4, 5], [4, 8], [8, 9]]
+var arr = [[1, 3], [2, 3], [3, 6], [5, 6], [5, 7],[4, 5], [4, 8], [8, 9]]
 // console.log(parentChildren(arr));
-// console.log(CommonAncestor(arr, 5, 7));
+console.log(CommonAncestor(arr, 6, 9));
 
 
 

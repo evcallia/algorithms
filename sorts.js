@@ -40,7 +40,10 @@ function InsertionSort(arr){
             if(val < arr[j]){
                 arr[j+1] = arr[j];
                 arr[j] = val;
+            }else{
+                break
             }
+            // console.log(arr);
         }
         // console.log(arr);
     }
