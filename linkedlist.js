@@ -82,7 +82,7 @@ class LinkedList{
         var node = new Node();
         node.next = this.head;
         this.head = node;
-        return this.head;
+        return this;
     }
     //prints a formated linked list
     toString(){
@@ -113,7 +113,7 @@ class LinkedList{
                 current = next;
             }
             this.head = prev;
-            return this.head;
+            return this
         }
     }
 }
@@ -135,7 +135,7 @@ console.log(myList.toString()); // null -> 5 -> 9 -> 6
 myList.shift();
 console.log(myList.toString()); // 5 -> 9 -> 6
 
-myList.reverse();
+myList.reverse());
 console.log(myList.toString()); // 6 -> 9 -> 5
 
 
