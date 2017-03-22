@@ -141,6 +141,81 @@ console.log(myList.toString()); // 6 -> 9 -> 5
 
 
 
+// PRACTICE PROBLEMS
+
+// You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+// You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+// Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+// Output: 7 -> 0 -> 8
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var addTwoNumbers = function(l1, l2) {
+    var pointer1 = l1;
+    var len1 = 0;
+    while(pointer1){
+        len1++;
+        pointer1 = pointer1.next;
+    }
+    pointer1 = l1;
+
+    var pointer2 = l2;
+    var len2 = 0;
+    while(pointer2){
+        len2++;
+        pointer2 = pointer2.next;
+    }
+    pointer2 = l2;
+
+    if(len1 < len2){
+        var t = len1;
+        len1 = len2;
+        len2 = t;
+        pointer1 = l2;
+        pointer2 = l1;
+    }
+
+    var sum;
+    var sumpointer;
+    var rem = 0;
+    while(len1 !== 0){
+        if(len2 === 0){
+            var tot = pointer1.val + rem;
+            sumpointer.next = new ListNode(tot % 10);
+            sumpointer = sumpointer.next;
+            rem = Math.floor(tot / 10);
+        }else{
+            var tot = pointer2.val + pointer1.val + rem;
+            rem = Math.floor(tot / 10);
+            if(!sum){
+                sum = new ListNode(tot % 10);
+                sumpointer = sum;
+            }else{
+                sumpointer.next = new ListNode(tot % 10);
+                sumpointer = sumpointer.next;
+            }
+            --len2;
+            pointer2 = pointer2.next;
+        }
+        --len1;
+        pointer1 = pointer1.next;
+    }
+    if(rem !== 0){
+        sumpointer.next = new ListNode(rem);
+    }
+    return sum;
+};
+
+
 
 
 
