@@ -1,3 +1,5 @@
+var Stack = require('./stack.js')
+
 class Node {
     // constructs Node. Optional param: value for node
     constructor(v = null) {
@@ -149,21 +151,126 @@ class BindarySearchTree {
         rSize(this.root);
         return size;
     }
+
+    //Prints tree in order recursively -> small to large
+    rPrintInOrder(node = this.root){
+        if(node){
+            this.rPrintInOrder(node.left);
+            console.log(node.val);
+            this.rPrintInOrder(node.right);
+        }
+    }
+
+    //Prints tree in order non-recursively -> small to large
+    printInOrder(){
+        if(this.root){
+            var stack = new Stack(),
+                current = this.root;
+            stack.push(current);
+            while(!stack.isEmpty()){
+                if(current && current.left){
+                    stack.push(current.left);
+                    current = current.left;
+                }else{
+                    current = stack.pop();
+                    console.log(current.val);
+                    if(current.right){
+                        stack.push(current.right);
+                    }
+                    current = current.right;
+                }
+            }
+        }
+    }
+
+    //Prints tree in pre-order recursively
+    rPrintPreorder(node = this.root){
+        if(node){
+            console.log(node.val);
+            this.rPrintPreorder(node.left);
+            this.rPrintPreorder(node.right);
+        }
+    }
+
+    printPreorder(){
+        if(this.root){
+            var stack = new Stack(),
+                current = this.root;
+            stack.push(current);
+            while(!stack.isEmpty()){
+                if(current){
+                    console.log(current.val);
+                    if(current.left){
+                        stack.push(current);
+                    }
+                    current = current.left;
+                }else{
+                    current = stack.pop().right;
+                }
+            }
+        }
+    }
+
+    //Prints tree in post-order recursively
+    rPrintPostorder(node = this.root){
+        if(node){
+            this.rPrintPreorder(node.left);
+            this.rPrintPreorder(node.right);
+            console.log(node.val);
+        }
+    }
+
+    printPostorder(){
+        if(this.root){
+            var stack = new Stack(),
+                current = this.root;
+            stack.push(current);
+            // TODO: Fix while loop
+            // while(!stack.isEmpty()){
+            //     if(current){
+            //         if(current.left){
+            //             stack.push(current);
+            //         }
+            //         current = current.left;
+            //     }else{
+            //         current = stack.pop();
+            //         if(current.right){
+            //             // stack.push(current);
+            //             stack.push(current.right)
+            //             current = current.right;
+            //         }else{
+            //             console.log(current.val);
+            //             current = null;
+            //         }
+            //     }
+            // }
+        }
+    }
 }
 
 var myBST = new BindarySearchTree();
-myBST.add(new Node(4));
 myBST.add(new Node(5));
 myBST.add(new Node(3));
+myBST.add(new Node(7));
+myBST.add(new Node(6));
+myBST.add(new Node(8));
+myBST.add(new Node(4));
 myBST.add(new Node(2));
-myBST.add(new Node(9));
-console.log(myBST);
-console.log(myBST.find(5));
-console.log(myBST.height());
-console.log(myBST.isEmpty());
-console.log(myBST.min());
-console.log(myBST.max());
-console.log(myBST.size());
+myBST.add(new Node(1));
+// console.log(myBST);
+// console.log(myBST.find(5));
+// console.log(myBST.height());
+// console.log(myBST.isEmpty());
+// console.log(myBST.min());
+// console.log(myBST.max());
+// console.log(myBST.size());
+// myBST.rPrintInOrder();
+// myBST.printInOrder();
+// myBST.rPrintPreorder();
+// myBST.printPreorder();
+myBST.rPrintPostorder();
+console.log("**");
+myBST.printPostorder();
 
 
 
